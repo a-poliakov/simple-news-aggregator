@@ -20,8 +20,9 @@ public class Site {
     @Size(min = 1, message = "Name must be at least 1 character!")
     private String name;
 
-    @Column(length = Integer.MAX_VALUE)
-    private String parseRule;
+    @JoinColumn(name = "rule_id")
+    @OneToOne
+    private ParseRule parseRule;
 
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
     private List<Item> items;
@@ -50,11 +51,11 @@ public class Site {
         this.name = name;
     }
 
-    public String getParseRule() {
+    public ParseRule getParseRule() {
         return parseRule;
     }
 
-    public void setParseRule(String parseRule) {
+    public void setParseRule(ParseRule parseRule) {
         this.parseRule = parseRule;
     }
 

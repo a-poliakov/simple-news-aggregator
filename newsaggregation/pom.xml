@@ -34,27 +34,7 @@
             <artifactId>spring-webmvc</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <!--Spring Security-->
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-core</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-taglibs</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-web</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.springframework.security</groupId>
-            <artifactId>spring-security-config</artifactId>
-            <version>${spring.security.version}</version>
-        </dependency>
+
         <!-- JDBC -->
         <dependency>
             <groupId>org.springframework</groupId>
@@ -66,11 +46,7 @@
             <artifactId>spring-orm</artifactId>
             <version>${spring.version}</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-test</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
+
         <!--JSP -->
         <dependency>
             <groupId>jstl</groupId>
@@ -83,28 +59,14 @@
             <artifactId>tiles-extras</artifactId>
             <version>LATEST</version>
         </dependency>
-        <!--<dependency>-->
-            <!--<groupId>org.apache.tiles</groupId>-->
-            <!--<artifactId>tiles-jsp</artifactId>-->
-            <!--<version>3.0.5</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.tiles</groupId>-->
-            <!--<artifactId>tiles-core</artifactId>-->
-            <!--<version>3.0.5</version>-->
-        <!--</dependency>-->
-        <!--<dependency>-->
-            <!--<groupId>org.apache.tiles</groupId>-->
-            <!--<artifactId>tiles-template</artifactId>-->
-            <!--<version>3.0.5</version>-->
-        <!--</dependency>-->
-        <!--&lt;!&ndash; Javax &ndash;&gt;-->
+
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
             <version>3.0.1</version>
             <scope>provided</scope>
         </dependency>
+
         <!-- Tests -->
         <dependency>
             <groupId>junit</groupId>
@@ -113,69 +75,23 @@
             <scope>test</scope>
         </dependency>
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-core</artifactId>
-            <version>${hibernate-version}</version>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${spring.version}</version>
+            <scope>test</scope>
         </dependency>
-        <!-- for JPA -->
+
+        <!-- JSoup -->
         <dependency>
-            <groupId>org.hibernate</groupId>
-            <artifactId>hibernate-entitymanager</artifactId>
-            <version>${hibernate-version}</version>
+            <groupId>org.jsoup</groupId>
+            <artifactId>jsoup</artifactId>
+            <version>1.10.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.springframework.data</groupId>
-            <artifactId>spring-data-jpa</artifactId>
-            <version>1.11.1.RELEASE</version>
-        </dependency>
-        <!--Jackson-->
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-core</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>com.fasterxml.jackson.core</groupId>
-            <artifactId>jackson-databind</artifactId>
-            <version>${jackson.version}</version>
-        </dependency>
+
         <dependency>
             <groupId>org.apache.commons</groupId>
             <artifactId>commons-io</artifactId>
             <version>1.3.2</version>
-        </dependency>
-        <!-- Sending email-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-context-support</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>javax.mail-api</artifactId>
-            <version>1.5.6</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.mail</groupId>
-            <artifactId>mail</artifactId>
-            <version>1.4.7</version>
-        </dependency>
-
-        <!--JMS-->
-        <!--    <dependency>
-                    <groupId>org.springframework</groupId>
-                    <artifactId>spring-context</artifactId>
-                    <version>${spring.version}</version>
-                </dependency>-->
-        <dependency>
-            <groupId>org.springframework</groupId>
-            <artifactId>spring-jms</artifactId>
-            <version>${spring.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>org.apache.activemq</groupId>
-            <artifactId>activemq-spring</artifactId>
-            <version>5.13.3</version>
         </dependency>
 
         <!-- DB Connector -->
@@ -195,17 +111,17 @@
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-jpa</artifactId>
-            <version>1.9.2.RELEASE</version>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
-            <version>1.11.2.RELEASE</version>
+            <version>LATEST</version>
         </dependency>
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons-core</artifactId>
-            <version>1.4.1.RELEASE</version>
+            <version>LATEST</version>
         </dependency>
 
         <!-- Hibernate -->

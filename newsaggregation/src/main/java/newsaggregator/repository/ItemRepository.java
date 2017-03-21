@@ -12,6 +12,8 @@ public interface ItemRepository extends JpaRepository<Item, Integer> {
 
     Item findBySiteAndLink(Site site, String link);
 
+    Item findBySiteAndTitle(Site site, String title);
+
     List<Item> findByDescriptionContainsOrTitleContainsAllIgnoreCase(String descriptionPart,
                                                                      String titlePart, Pageable pageable);
 

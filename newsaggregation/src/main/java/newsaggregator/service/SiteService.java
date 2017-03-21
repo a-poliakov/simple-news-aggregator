@@ -1,6 +1,8 @@
 package newsaggregator.service;
 
+import newsaggregator.dto.SiteDTO;
 import newsaggregator.entity.Item;
+import newsaggregator.entity.ParseRule;
 import newsaggregator.entity.Site;
 import newsaggregator.exception.RssException;
 import newsaggregator.repository.ItemRepository;
@@ -11,10 +13,13 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
+@Transactional
 public class SiteService {
     @Autowired
     private SiteRepository siteRepository;
@@ -23,13 +28,29 @@ public class SiteService {
     private RssService rssService;
 
     @Autowired
+    private HtmlService htmlService;
+
+    @Autowired
+    private XmlService xmlService;
+
+    @Autowired
     private ItemRepository itemRepository;
+
+    @Autowired
+    private ParseRuleService parseRuleService;
 
     public void saveItems(Site site){
         try{
-            List<Item> items = rssService.getItems(site.getUrl());
+            List<Item> items = new ArrayList<>();
+            if(site.getParseRule().getType().equals("user") && site.getParseRule().getContentType().equals("html")){
+                items = htmlService.getItems(site.getUrl(), site.getParseRule());
+            } else if(site.getParseRule().getType().equals("user") && site.getParseRule().getContentType().equals("xml")){
+                items = xmlService.getItems(site.getUrl(), site.getParseRule());
+            } else if(site.getParseRule().getType().equals("") || site.getParseRule().getType().equals("auto")) {
+                items = rssService.getItems(site.getUrl());
+            }
             for (Item item : items) {
-                Item savedItem = itemRepository.findBySiteAndLink(site, item.getLink());
+                Item savedItem = itemRepository.findBySiteAndTitle(site, item.getTitle());
                 if(savedItem == null) {
                     item.setSite(site);
                     itemRepository.save(item);
@@ -50,7 +71,12 @@ public class SiteService {
         }
     }
 
-    public void save(Site site){
+    public void save(SiteDTO siteDto){
+        Site site = new Site();
+        site.setName(siteDto.getName());
+        site.setUrl(siteDto.getUrl());
+        ParseRule rule = parseRuleService.parseStringRule(siteDto.getParseRule());
+        site.setParseRule(rule);
         siteRepository.save(site);
         saveItems(site);
     }

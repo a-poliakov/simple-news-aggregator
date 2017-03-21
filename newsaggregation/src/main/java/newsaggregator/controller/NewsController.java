@@ -1,5 +1,6 @@
 package newsaggregator.controller;
 
+import newsaggregator.dto.SiteDTO;
 import newsaggregator.entity.Site;
 import newsaggregator.service.ItemService;
 import newsaggregator.service.SiteService;
@@ -20,8 +21,8 @@ public class NewsController {
     private SiteService siteService;
 
     @ModelAttribute("site")
-    public Site constructSite() {
-        return new Site();
+    public SiteDTO constructSite() {
+        return new SiteDTO();
     }
 
     @RequestMapping(value = "/", method = RequestMethod.GET)
@@ -32,7 +33,7 @@ public class NewsController {
 
     @RequestMapping(value = "/", method = RequestMethod.POST)
     public String doAddSite(Model model,
-                            @ModelAttribute("site") Site site, BindingResult result) {
+                            @ModelAttribute("site") SiteDTO site, BindingResult result) {
         if (result.hasErrors()) {
             return index(model);
         }
