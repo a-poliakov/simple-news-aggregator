@@ -20,8 +20,8 @@ public class Site {
     @Size(min = 1, message = "Name must be at least 1 character!")
     private String name;
 
-    @JoinColumn(name = "rule_id")
     @OneToOne
+    @PrimaryKeyJoinColumn
     private ParseRule parseRule;
 
     @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)

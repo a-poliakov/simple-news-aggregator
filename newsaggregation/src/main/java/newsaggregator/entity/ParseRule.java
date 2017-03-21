@@ -41,9 +41,6 @@ public class ParseRule {
     @Column(length = 1000)
     private String linkTag = "";
 
-    @OneToOne(mappedBy = "parseRule", cascade = CascadeType.ALL)
-    private Site site;
-
     public ParseRule() {
     }
 
@@ -181,13 +178,5 @@ public class ParseRule {
 
     public void setId(Integer id) {
         this.id = id;
-    }
-
-    public Site getSite() {
-        return site;
-    }
-
-    public void setSite(Site site) {
-        this.site = site;
     }
 }

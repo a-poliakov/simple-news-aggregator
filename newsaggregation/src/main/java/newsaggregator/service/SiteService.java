@@ -76,6 +76,7 @@ public class SiteService {
         site.setName(siteDto.getName());
         site.setUrl(siteDto.getUrl());
         ParseRule rule = parseRuleService.parseStringRule(siteDto.getParseRule());
+        parseRuleService.save(rule);
         site.setParseRule(rule);
         siteRepository.save(site);
         saveItems(site);

@@ -111,7 +111,10 @@
                 <c:out value="${item.url}"/>
             </td>
             <td>
-                <c:out value="${item.parseRule}" />
+                <c:out value="${item.parseRule.type}" /><br>
+                <c:out value="${item.parseRule.contentType}" /><br>
+                <c:out value="${item.parseRule.feedTag}" /><br>
+                <c:out value="${item.parseRule.feedType}" />
             </td>
         </tr>
     </c:forEach>
