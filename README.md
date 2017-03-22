@@ -1,5 +1,7 @@
 # simple-news-aggregator
 
+![logo](img.png)
+
 Задеплоенный, запущенный проект:
 http://jquiz.azurewebsites.net/newsaggregator/ <br>
 (хостинг неторопливый, поэтому лучше смотреть на локальном компьютере :)
