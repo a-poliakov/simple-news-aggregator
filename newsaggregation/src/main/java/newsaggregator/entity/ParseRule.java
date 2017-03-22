@@ -7,6 +7,7 @@ import java.util.List;
 public class ParseRule {
     @Id
     @GeneratedValue
+    @Column(name = "parse_rule_id")
     private Integer id;
     @Column(length = 1000)
     private String type = "";
@@ -41,7 +42,18 @@ public class ParseRule {
     @Column(length = 1000)
     private String linkTag = "";
 
+    @OneToOne(fetch=FetchType.EAGER, mappedBy="parseRule")
+    private Site site;
+
     public ParseRule() {
+    }
+
+    public Site getSite() {
+        return site;
+    }
+
+    public void setSite(Site site) {
+        this.site = site;
     }
 
     public String getType() {

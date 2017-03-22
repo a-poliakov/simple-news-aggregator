@@ -20,11 +20,11 @@ public class Site {
     @Size(min = 1, message = "Name must be at least 1 character!")
     private String name;
 
-    @OneToOne
-    @PrimaryKeyJoinColumn
+    @OneToOne(fetch = FetchType.EAGER, cascade = CascadeType.MERGE)
+    @JoinColumn(name = "parse_rule_id")
     private ParseRule parseRule;
 
-    @OneToMany(mappedBy = "site", cascade = CascadeType.ALL)
+    @OneToMany(mappedBy = "site", cascade = CascadeType.MERGE)
     private List<Item> items;
 
     public Integer getId() {

@@ -11,43 +11,35 @@ import org.springframework.web.servlet.view.tiles3.TilesConfigurer;
 import org.springframework.web.servlet.view.tiles3.TilesViewResolver;
 
 /**
- * Created by admin on 13.03.2017.
+ * Настройка ViewResolver-ов и ResourceHandler-ов для статических ресурсов
  */
 @Configuration
 @EnableWebMvc
 @ComponentScan({"newsaggregator.config", "newsaggregator.controller", "newsaggregator.repository", "newsaggregator.service"})
 public class WebConfig extends WebMvcConfigurerAdapter{
-//    @Override
-//    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
-//        configurer.enable();
-//    }
+    @Override
+    public void configureDefaultServletHandling(DefaultServletHandlerConfigurer configurer) {
+        configurer.enable();
+    }
 
     @Bean
     ViewResolver tilesViewResolver() {
         TilesViewResolver viewResolver = new TilesViewResolver();
         viewResolver.setOrder(0);
+        viewResolver.setContentType("text/html; charset=UTF-8");
         return viewResolver;
     }
 
-//    @Bean
-//    public InternalResourceViewResolver viewResolver() {
-//        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
-//        viewResolver.setViewClass(JstlView.class);
-//        viewResolver.setPrefix("/WEB-INF/views/");
-//        viewResolver.setSuffix(".jsp");
-//        viewResolver.setContentType("text/html; charset-utf-8");
-//        viewResolver.setOrder(1);
-//        return viewResolver;
-//    }
-
-    /**
-     * Configure ViewResolvers to deliver preferred views.
-     */
-//    @Override
-//    public void configureViewResolvers(ViewResolverRegistry registry) {
-//        TilesViewResolver viewResolver = new TilesViewResolver();
-//        registry.viewResolver(viewResolver);
-//    }
+    @Bean
+    public InternalResourceViewResolver viewResolver() {
+        InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
+        viewResolver.setViewClass(JstlView.class);
+        viewResolver.setPrefix("/WEB-INF/views/");
+        viewResolver.setSuffix(".jsp");
+        viewResolver.setContentType("text/html; charset=UTF-8");
+        viewResolver.setOrder(1);
+        return viewResolver;
+    }
 
     @Bean
     TilesConfigurer tilesConfigurer() {

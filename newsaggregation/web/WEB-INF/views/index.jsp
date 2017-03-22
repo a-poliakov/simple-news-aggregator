@@ -111,10 +111,54 @@
                 <c:out value="${item.url}"/>
             </td>
             <td>
-                <c:out value="${item.parseRule.type}" /><br>
-                <c:out value="${item.parseRule.contentType}" /><br>
-                <c:out value="${item.parseRule.feedTag}" /><br>
-                <c:out value="${item.parseRule.feedType}" />
+                <c:if test="${item.parseRule.type != ''}">
+                    type=<c:out value="${item.parseRule.type}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.contentType != ''}">
+                    content-type=<c:out value="${item.parseRule.contentType}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.feedTag != ''}">
+                    feed-tag=<c:out value="${item.parseRule.feedTag}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.feedClass != ''}">
+                    feed-class=<c:out value="${item.parseRule.feedClass}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.channelTag != ''}">
+                    feed-class=<c:out value="${item.parseRule.channelTag}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.channelClassName != ''}">
+                    feed-class=<c:out value="${item.parseRule.channelClassName}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.itemTag != ''}">
+                    feed-class=<c:out value="${item.parseRule.itemTag}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.itemClass != ''}">
+                    feed-class=<c:out value="${item.parseRule.itemClass}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.titleTag != ''}">
+                    feed-class=<c:out value="${item.parseRule.titleTag}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.titleClass != ''}">
+                    feed-class=<c:out value="${item.parseRule.titleClass}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.descriptionTag != ''}">
+                    feed-class=<c:out value="${item.parseRule.descriptionTag}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.descriptionClass != ''}">
+                    feed-class=<c:out value="${item.parseRule.descriptionClass}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.publishedDateTag != ''}">
+                    feed-class=<c:out value="${item.parseRule.publishedDateTag}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.publishedDateClass != ''}">
+                    feed-class=<c:out value="${item.parseRule.publishedDateClass}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.linkTag != ''}">
+                    feed-class=<c:out value="${item.parseRule.linkTag}" /><br>
+                </c:if>
+                <c:if test="${item.parseRule.linkClass != ''}">
+                    feed-class=<c:out value="${item.parseRule.linkClass}" />
+                </c:if>
             </td>
         </tr>
     </c:forEach>

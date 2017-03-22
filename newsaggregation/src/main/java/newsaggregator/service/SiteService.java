@@ -6,6 +6,7 @@ import newsaggregator.entity.ParseRule;
 import newsaggregator.entity.Site;
 import newsaggregator.exception.RssException;
 import newsaggregator.repository.ItemRepository;
+import newsaggregator.repository.ParseRuleRepository;
 import newsaggregator.repository.SiteRepository;
 import org.apache.commons.logging.Log;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,15 +43,15 @@ public class SiteService {
     public void saveItems(Site site){
         try{
             List<Item> items = new ArrayList<>();
-            if(site.getParseRule().getType().equals("user") && site.getParseRule().getContentType().equals("html")){
+            if(site.getParseRule() == null || site.getParseRule().getType().equals("") || site.getParseRule().getType().equals("auto")) {
+                items = rssService.getItems(site.getUrl());
+            } else if(site.getParseRule().getType().equals("user") && site.getParseRule().getContentType().equals("html")){
                 items = htmlService.getItems(site.getUrl(), site.getParseRule());
             } else if(site.getParseRule().getType().equals("user") && site.getParseRule().getContentType().equals("xml")){
                 items = xmlService.getItems(site.getUrl(), site.getParseRule());
-            } else if(site.getParseRule().getType().equals("") || site.getParseRule().getType().equals("auto")) {
-                items = rssService.getItems(site.getUrl());
             }
             for (Item item : items) {
-                Item savedItem = itemRepository.findBySiteAndTitle(site, item.getTitle());
+                Item savedItem = itemRepository.findBySiteAndTitleAndLink(site, item.getTitle(), item.getLink());
                 if(savedItem == null) {
                     item.setSite(site);
                     itemRepository.save(item);
@@ -76,9 +77,9 @@ public class SiteService {
         site.setName(siteDto.getName());
         site.setUrl(siteDto.getUrl());
         ParseRule rule = parseRuleService.parseStringRule(siteDto.getParseRule());
-        parseRuleService.save(rule);
+        rule = parseRuleService.save(rule);
         site.setParseRule(rule);
-        siteRepository.save(site);
+        site = siteRepository.save(site);
         saveItems(site);
     }
 

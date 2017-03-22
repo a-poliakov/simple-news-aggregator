@@ -10,6 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.UnsupportedEncodingException;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 
 
 @Controller
@@ -53,6 +56,8 @@ public class NewsController {
                            @RequestParam(defaultValue="1", value="page", required=false) Integer page,
                            @RequestParam(defaultValue="20", value="size", required=false) Integer size,
                            @RequestParam(defaultValue="", value="search", required=false) String search){
+        byte[] bytes = search.getBytes(StandardCharsets.ISO_8859_1);
+        search = new String(bytes, Charset.forName("UTF-8"));
         model.addAttribute("search", search);
         if(search == null || search.equals("")) {
             model.addAttribute("items", this.itemService.getItems(page - 1, size));

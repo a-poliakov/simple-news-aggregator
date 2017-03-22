@@ -34,7 +34,7 @@ public class HtmlService {
                 document.body().getElementsByTag(rule.getFeedTag()).forEach(getFeedConsumer(rule, list));
             } else{
                 if(!rule.getItemClass().equals("")) {
-                    document.body().getElementsByTag(rule.getItemClass()).forEach(getElementConsumer(rule, list));
+                    document.body().getElementsByClass(rule.getItemClass()).forEach(getElementConsumer(rule, list));
                 } else if(!rule.getItemTag().equals("")){
                     document.body().getElementsByTag(rule.getItemTag()).forEach(getElementConsumer(rule, list));
                 }
@@ -79,7 +79,12 @@ public class HtmlService {
                         item.setPublishedDate(pubDate);
                     } catch (ParseException e1) {
                         e1.printStackTrace();
+                        Date pubDate = new Date();
+                        item.setPublishedDate(pubDate);
                     }
+                } else {
+                    Date pubDate = new Date();
+                    item.setPublishedDate(pubDate);
                 }
                 list.add(item);
             } catch (Exception ex){
